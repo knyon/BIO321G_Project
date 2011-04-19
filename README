@@ -1,1 +1,7 @@
-This will contain all config, scripts, and other files required for the project
+This will contain all config, scripts, and other files required for the project.
+
+TODOS:
+<done> Configure the environment
+<done> Configure the events
+
+<Nedu, Sarah, Lane> Run the simulation with the digits of your UT EID as the seed
