@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # File Name : scripts/misc_utils.py
 # Creation Date : Sat Apr 23 13:59:53 2011
-# Last Modified : Sat Apr 23 15:33:02 2011
+# Last Modified : Sun Apr 24 13:19:21 2011
 # Created By :  Lane Smith
 
 # This script contains various functions that are used in the various scripts
@@ -17,7 +17,7 @@ def verify_file_locs(required_files, avida_dir):
         print "Script has not been run in the right location. Please run this in a directory whose parent directory contains the directory 'avida'."
         exit()
     os.chdir(avida_dir)
-    if not path.exists('avida'):
+    if not path.exists('avida') and not path.exists('avida.exe'):
         print "The 'avida' executable does not exist in the 'avida' directory."
         exit()
     missing = []

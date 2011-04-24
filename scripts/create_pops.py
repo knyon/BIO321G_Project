@@ -1,8 +1,14 @@
 #!/usr/bin/python
 # File Name : scripts/create_pops.py
 # Creation Date : Wed Apr 20 14:10:41 2011
-# Last Modified : Sat Apr 23 21:18:38 2011
+# Last Modified : Sun Apr 24 13:29:09 2011
 # Created By :  Lane Smith
+
+# This script automatically creates the population files required for the
+# experiment using avida. This script should be run inside the 'scripts'
+# directory, and the 'scripts' directory should be on the same tree level as
+# the 'avida' directory.
+
 
 import os, shutil
 from os import path
@@ -15,7 +21,11 @@ AVIDA_DIR = path.join(os.pardir, 'avida') # Relative location of the avida direc
 
 def run_avida(cfg, seed):
     os.rename(cfg, EVN)  
-    os.system("./avida -s " + str(seed) + " > "+os.devnull)  # Execute avida with the given seed. Throw output into the bit bucket.
+    if os.name == "nt":  # if the OS is Windows based
+        command = "avida.exe -s "
+    else:
+        command = "./avida -s "
+    os.system(command + str(seed) + " > "+os.devnull)  # Execute avida with the given seed. Throw output into the bit bucket.
     os.rename(EVN, cfg)
 
 verify_file_locs(CUSTOM_EVNS, AVIDA_DIR)
