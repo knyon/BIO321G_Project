@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # File Name : scripts/misc_utils.py
 # Creation Date : Sat Apr 23 13:59:53 2011
-# Last Modified : Sat Apr 23 14:10:55 2011
+# Last Modified : Sat Apr 23 15:33:02 2011
 # Created By :  Lane Smith
 
 # This script contains various functions that are used in the various scripts
@@ -35,7 +35,7 @@ def move_file(src, dest_dir):
 
     if not path.exists(src):
         print "The source file you're trying to move doesn't even exist!"
-        exit()
+        return "NOT MOVED"
 
     if not path.exists(dest_dir):
         os.mkdir(dest_dir)
