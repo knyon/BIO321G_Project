@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # File Name : scripts/create_pops.py
 # Creation Date : Wed Apr 20 14:10:41 2011
-# Last Modified : Sun Apr 24 13:29:09 2011
+# Last Modified : Sun Apr 24 14:18:48 2011
 # Created By :  Lane Smith
 
 # This script automatically creates the population files required for the
@@ -16,7 +16,7 @@ from os import path
 from misc_utils import verify_file_locs, move_file, display_msg
 
 EVN = "environment.cfg" 
-CUSTOM_EVNS = ["control_environment.cfg", "treatment_environment.cfg"]  # Required configuration files for this script
+CUSTOM_EVNS = ["native_environment.cfg", "invasive_environment.cfg"]  # Required configuration files for this script
 AVIDA_DIR = path.join(os.pardir, 'avida') # Relative location of the avida directory
 
 def run_avida(cfg, seed):

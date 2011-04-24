@@ -1,5 +1,7 @@
 This will contain all config, scripts, and other files required for the project.
 
+ALL SCRIPTS MUST BE RUN FROM THE 'SCRIPTS' DIRECTORY.
+
 TODOS:
 <done> Configure the environment
 <done> Configure the events
