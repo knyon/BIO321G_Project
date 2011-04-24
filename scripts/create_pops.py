@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # File Name : scripts/create_pops.py
 # Creation Date : Wed Apr 20 14:10:41 2011
-# Last Modified : Sun Apr 24 14:18:48 2011
+# Last Modified : Sun Apr 24 16:38:37 2011
 # Created By :  Lane Smith
 
 # This script automatically creates the population files required for the
@@ -13,20 +13,12 @@
 import os, shutil
 from os import path
 # Module is scripts/misc_utils.py
-from misc_utils import verify_file_locs, move_file, display_msg
+from misc_utils import verify_file_locs, move_file, display_msg, run_avida
 
 EVN = "environment.cfg" 
 CUSTOM_EVNS = ["native_environment.cfg", "invasive_environment.cfg"]  # Required configuration files for this script
 AVIDA_DIR = path.join(os.pardir, 'avida') # Relative location of the avida directory
 
-def run_avida(cfg, seed):
-    os.rename(cfg, EVN)  
-    if os.name == "nt":  # if the OS is Windows based
-        command = "avida.exe -s "
-    else:
-        command = "./avida -s "
-    os.system(command + str(seed) + " > "+os.devnull)  # Execute avida with the given seed. Throw output into the bit bucket.
-    os.rename(EVN, cfg)
 
 verify_file_locs(CUSTOM_EVNS, AVIDA_DIR)
 seed = input("Please enter the seed number (digits of UT EID): ")

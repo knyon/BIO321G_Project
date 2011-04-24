@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # File Name : scripts/misc_utils.py
 # Creation Date : Sat Apr 23 13:59:53 2011
-# Last Modified : Sun Apr 24 13:19:21 2011
+# Last Modified : Sun Apr 24 17:20:45 2011
 # Created By :  Lane Smith
 
 # This script contains various functions that are used in the various scripts
@@ -31,12 +31,12 @@ def verify_file_locs(required_files, avida_dir):
 # Move a file 'src' to directory 'dest_dir'. If directory does not exist,
 # create a directory. Add an underscore and an incrementing number if there is
 # a naming conflict at the destination.
-def move_file(src, dest_dir):
+def move_file(*src, dest_dir):
 
+    for 
     if not path.exists(src):
         print "The source file you're trying to move doesn't even exist!"
         return "NOT MOVED"
-
     if not path.exists(dest_dir):
         os.mkdir(dest_dir)
 
@@ -63,3 +63,21 @@ def display_msg(msg):
         os.system("growlnotify -m '"+msg+"' -s") # -s makes it sticky (doesn't go away until clicked)
     else:
         print msg
+
+# Run the avida command, either in normal mode or analyze mode. If 1 parameter
+# is passed or seed = 0, run analyze mode. If not, use the seed given to run an
+# instance of avida. Function also renames a given environment file to
+# 'environment.cfg', and reverts it back to it's original name
+def run_avida(seed=0):
+    if seed:
+        if os.name == "nt":  # if the OS is Windows based
+            command = "avida.exe -s "
+        else:
+            command = "./avida -s "
+        os.system(command + str(seed) + " > "+os.devnull)  # Execute avida with the given seed. Throw output into the bit bucket.
+    else:
+        if os.name == "nt": 
+            os.system("avida.exe -a")
+        else:
+            print "here!"
+            os.system("./avida -a")
