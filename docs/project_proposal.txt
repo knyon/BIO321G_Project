@@ -1,0 +1,9 @@
+Project Idea: Invasive Species in Avida
+
+Group Members: Just me, Lane Smith, by my lonesome
+
+Motivation: I hate imported red fire ants, an invasive species from the darkest corner of Hell, with an unrivaled passion. This a consequence of working two summers as a landscaper and being all too familiar with their malefic nature and the welts that itch for days. (Article about the species: http://goo.gl/JtqLb). As consequence, this hatred has begat an interest in how invasive speicies establish themselves in their foreign environments. This phenomenon is especially interesting when considering some of the more interesting case where species only barely survive in their native environment, but thrive in their adopted environment. 
+
+Hypothesis: I surmise that an Avidian strain that replicates quickly and has evolved one or two key tasks will quickly outpace and overcome an Avidian strain that replicates slower but has evolved many beneficial tasks when both are placed in the same environment.
+
+Rough Outline of Methods: I will 'grow' different strains of Avidians in different environments in order to provide an array of different genotypes that vary by length, number of tasks performed, gestation time, etc. After running the simulation for a sufficient number of updates (100k?), I will introduce a sample (the invader) from one of the other strains into each environment with an established genotype. After running this the simulation for an additional number of updates (10k?), I will analysis the pheylogenetic and genotypic data provided by Avida. These treatments will be be compared with a control, which will be an instance of each environment without an invader, run for the same number of updates. 
