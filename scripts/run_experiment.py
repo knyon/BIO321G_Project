@@ -1,9 +1,4 @@
 #!/usr/bin/python
-# File Name : scripts/run_experiment.py
-# Creation Date : Sat Apr 23 13:53:22 2011
-# Last Modified : Sun Apr 24 19:43:13 2011
-# Created By :  Lane Smith
-
 # This script automatically runs the experiment by using the population files
 # created with the create_pops.py script. This script should be run inside the
 # 'scripts' directory, and the 'scripts' directory should be on the same tree
@@ -12,16 +7,17 @@
 import os, shutil, re
 from os import path
 # Module is scripts/misc_utils.py
-from misc_utils import verify_file_locs, move_file, display_msg, run_avida
+from misc_utils import verify_file_locs, move_files, display_msg, run_avida
 
 AVIDA_DIR = path.join(os.pardir, 'avida') # Relative location of the avida directory
 EVENTS = "events.cfg"
 EVN = "environment.cfg" 
 ANALYZE = "analyze.cfg"
 CUSTOM_EVENTS = ["experiment_events.cfg"]
-CUSTOM_EVNS = ["invasive_environment.cfg"]  # Required configuration files for this script
+CUSTOM_EVNS = ["invasive_environment.cfg", "native_enviroment.cfg"]  # Required configuration files for this script
 CUSTOM_ANALYZE = ["invasive_analyze.cfg"]
 POPULATION_FILES = ["native-detail-100000.spop", "invasive-detail-100000.spop"]
+NUM_TRIALS = 1
 
 
 # move the population files
@@ -30,35 +26,45 @@ user_pops_dir = path.join(os.pardir, 'saved_data', username)
 user_pop_files = []
 for pop in POPULATION_FILES:
     user_pop_files.append(path.join(user_pops_dir,pop))
-    
-verify_file_locs(CUSTOM_EVENTS + CUSTOM_EVNS + CUSTOM_ANALYZE +user_pop_files, AVIDA_DIR)
 
-if path.exists(EVENTS):  # If there already exists an events.cfg file, move it out of the way
-    os.rename(EVENTS, "temp")
+required_files = CUSTOM_EVENTS + CUSTOM_EVNS + CUSTOM_ANALYZE + user_pop_files
+verify_file_locs(required_files, AVIDA_DIR)
+moved_cfgs = move_files("temp", EVENTS, EVN, ANALYZE) # If there already exists configuration files, move them out of the way
+moved_pop_files = move_files(os.curdir, *user_pop_files)
 
-# find the dominant sequence
-for cfg in CUSTOM_EVNS:
-    run_avida(cfg, EVN)
+try:
+    os.rename(CUSTOM_EVENTS[0], EVENTS)
+    os.rename(CUSTOM_EVNS[0], EVN)
+    os.rename(CUSTOM_ANALYZE[0], ANALYZE)
+    # find the dominant sequence
+    run_avida(-1)
     display_msg("Analysis complete")
 
-with open("data/dom_genotype.dat") as fp:
-    for line in fp:
-        if re.match(r'[^#]\w+', line):
-            break
-    
-# edit the events.cfg file
-with open("experiment_events.cfg") as fp:
-    detail_line = re.compile(r"(.*InjectSequence\s)(\w+)")
-    fo = open("events.cfg", "w")
-    for line in fp:
-        if detail_line.match(line):
-            line = detail_line.sub(r'\1'+dom_genotype+'\n',line)
-        fo.write(line)
-    fo.close()
+    with open("data/dom_genotype.dat") as fp:
+        for line in fp:
+            if re.match(r'[^#]\w+', line):
+                dom_genotype = line.strip()
+                break
+        
+    # edit the events.cfg file
+    with open("experiment_events.cfg") as fp:
+        detail_line = re.compile(r"(.*InjectSequence\s)(\w+)")
+        fo = open("events.cfg", "w")
+        for line in fp:
+            if detail_line.match(line):
+                line = detail_line.sub(r'\1'+dom_genotype+'\n',line)
+            fo.write(line)
+        fo.close()
+
+    os.rename(EVN,CUSTOM_ENVS[0])
+    os.rename(CUSTOM_EVNS[1], EVNS)
+    for range(NUM_TRIALS):
+        run_avida()
+    os.rename(EVNS, CUSTOM_EVNS[1])
+
+finally:
+    move_files("temp", *moved_cfgs)  # Move all of the configuration files back
+    move_files(user_pops_dir, *moved_pop_files)
 
 
-
-
-if path.exists("temp"):  # Put back the environment.cfg file
-    os.rename("temp", EVENTS)
 display_msg("Script has finished.")
