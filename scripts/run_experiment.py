@@ -17,7 +17,6 @@ CUSTOM_EVENTS = ["experiment_events.cfg"]
 CUSTOM_EVNS = ["invasive_environment.cfg", "native_environment.cfg"]  # Required configuration files for this script
 CUSTOM_ANALYZE = ["invasive_analyze.cfg"]
 POPULATION_FILES = ["native-detail-100000.spop", "invasive-detail-100000.spop"]
-NUM_TRIALS = 1
 
 
 # move the population files
@@ -39,6 +38,7 @@ try:
     run_avida(-1)
     display_msg("Analysis complete")
     moved_cfgs += move_files("temp", EVENTS)
+    os.rename(ANALYZE, CUSTOM_ANALYZE[0])
 
     with open("data/dom_genotype.dat") as fp:
         for line in fp:
@@ -58,16 +58,15 @@ try:
 
     os.rename(EVN,CUSTOM_EVNS[0])
     os.rename(CUSTOM_EVNS[1], EVN)
-    for i in range(NUM_TRIALS):
-        run_avida()
+    run_avida()
     os.rename(EVN, CUSTOM_EVNS[1])
 
+    save_data_path = path.join(os.pardir, "saved_data", username, "experimental_data")
+    move_files(save_data_path, os.listdir("data/"))
+
 finally:
-    os.rename(ANALYZE, CUSTOM_ANALYZE[0])
     if path.exists(EVENTS):
         os.remove(EVENTS)
     move_files(os.curdir, *moved_cfgs)  # Move all of the configuration files back
     move_files(user_pops_dir, *moved_pop_files)
-
-
 display_msg("Script has finished.")
