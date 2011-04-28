@@ -14,7 +14,7 @@ EVENTS = "events.cfg"
 EVN = "environment.cfg" 
 ANALYZE = "analyze.cfg"
 CUSTOM_EVENTS = ["experiment_events.cfg"]
-CUSTOM_EVNS = ["invasive_environment.cfg", "native_enviroment.cfg"]  # Required configuration files for this script
+CUSTOM_EVNS = ["invasive_environment.cfg", "native_environment.cfg"]  # Required configuration files for this script
 CUSTOM_ANALYZE = ["invasive_analyze.cfg"]
 POPULATION_FILES = ["native-detail-100000.spop", "invasive-detail-100000.spop"]
 NUM_TRIALS = 1
@@ -29,16 +29,16 @@ for pop in POPULATION_FILES:
 
 required_files = CUSTOM_EVENTS + CUSTOM_EVNS + CUSTOM_ANALYZE + user_pop_files
 verify_file_locs(required_files, AVIDA_DIR)
-moved_cfgs = move_files("temp", EVENTS, EVN, ANALYZE) # If there already exists configuration files, move them out of the way
+moved_cfgs = move_files("temp", EVN, ANALYZE) # If there already exists configuration files, move them out of the way
 moved_pop_files = move_files(os.curdir, *user_pop_files)
 
 try:
-    os.rename(CUSTOM_EVENTS[0], EVENTS)
     os.rename(CUSTOM_EVNS[0], EVN)
     os.rename(CUSTOM_ANALYZE[0], ANALYZE)
     # find the dominant sequence
     run_avida(-1)
     display_msg("Analysis complete")
+    moved_cfgs += move_files("temp", EVENTS)
 
     with open("data/dom_genotype.dat") as fp:
         for line in fp:
@@ -56,14 +56,17 @@ try:
             fo.write(line)
         fo.close()
 
-    os.rename(EVN,CUSTOM_ENVS[0])
-    os.rename(CUSTOM_EVNS[1], EVNS)
-    for range(NUM_TRIALS):
+    os.rename(EVN,CUSTOM_EVNS[0])
+    os.rename(CUSTOM_EVNS[1], EVN)
+    for i in range(NUM_TRIALS):
         run_avida()
-    os.rename(EVNS, CUSTOM_EVNS[1])
+    os.rename(EVN, CUSTOM_EVNS[1])
 
 finally:
-    move_files("temp", *moved_cfgs)  # Move all of the configuration files back
+    os.rename(ANALYZE, CUSTOM_ANALYZE[0])
+    if path.exists(EVENTS):
+        os.remove(EVENTS)
+    move_files(os.curdir, *moved_cfgs)  # Move all of the configuration files back
     move_files(user_pops_dir, *moved_pop_files)
 
 

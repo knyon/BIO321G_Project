@@ -73,10 +73,9 @@ def run_avida(seed=0):
             command = "avida.exe "
         else:
             command = "./avida "
-        os.system(command + str(seed) + " > "+os.devnull)  # Execute avida with the given seed. Throw output into the bit bucket.
+        os.system(command + " > " +os.devnull)  # Execute avida with the given seed. Throw output into the bit bucket.
     else:
         if os.name == "nt": 
             os.system("avida.exe -a")
         else:
-            print "here!"
             os.system("./avida -a")
