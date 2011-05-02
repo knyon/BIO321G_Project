@@ -7,8 +7,8 @@
 
 import os, shutil
 from os import path
-# Module is scripts/misc_utils.py
-from misc_utils import verify_file_locs, move_files, display_msg, run_avida
+# Module is scripts/helper_functions.py
+from helper_functions import verify_file_locs, move_files, display_msg, run_avida
 
 EVN = "environment.cfg" 
 CUSTOM_EVNS = ["native_environment.cfg", "invasive_environment.cfg"]  # Required configuration files for this script

@@ -7,6 +7,6 @@ TODOS:
 <done> Configure the events
 <done> Run the simulation with the digits of your UT EID as the seed
 <done> Email Lane your pop files (so we all have them)
+<done> Write scripts to run the invasion trials. 
 
-<Lane> Write scripts to run the invasion trials. 
-<All> Run scripts and email Lane the produces files
+<All> Zip up and send Lane the experimental data files

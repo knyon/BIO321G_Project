@@ -6,8 +6,8 @@
 
 import os, shutil, re
 from os import path
-# Module is scripts/misc_utils.py
-from misc_utils import verify_file_locs, move_files, display_msg, run_avida
+# Module is scripts/helper_functions.py
+from helper_functions import verify_file_locs, move_files, display_msg, run_avida
 
 AVIDA_DIR = path.join(os.pardir, 'avida') # Relative location of the avida directory
 EVENTS = "events.cfg"
