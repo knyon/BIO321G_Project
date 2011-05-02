@@ -29,6 +29,7 @@ def verify_file_locs(required_files, avida_dir):
 def move_files(dest_dir, *src_files):
     files_moved = []
     for src in src_files:
+        print "Moving file:", src
         if not path.exists(src):
             continue
         if not path.exists(dest_dir):

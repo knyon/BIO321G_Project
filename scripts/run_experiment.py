@@ -62,7 +62,11 @@ try:
     os.rename(EVN, CUSTOM_EVNS[1])
 
     save_data_path = path.join(os.pardir, "saved_data", username, "experimental_data")
-    move_files(save_data_path, *os.listdir("data/"))
+    data_files = []
+    for f in os.listdir("data"):
+        if fi not in ['README', '.DS_store']:
+            data_files.append(path.join("data",f))
+    move_files(save_data_path, *data_files)
 
 finally:
     if path.exists(EVENTS):
