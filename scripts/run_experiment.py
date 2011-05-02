@@ -62,7 +62,7 @@ try:
     os.rename(EVN, CUSTOM_EVNS[1])
 
     save_data_path = path.join(os.pardir, "saved_data", username, "experimental_data")
-    move_files(save_data_path, os.listdir("data/"))
+    move_files(save_data_path, *os.listdir("data/"))
 
 finally:
     if path.exists(EVENTS):
