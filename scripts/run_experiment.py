@@ -17,6 +17,7 @@ CUSTOM_EVENTS = ["experiment_events.cfg"]
 CUSTOM_EVNS = ["invasive_environment.cfg", "native_environment.cfg"]  # Required configuration files for this script
 CUSTOM_ANALYZE = ["invasive_analyze.cfg"]
 POPULATION_FILES = ["native-detail-100000.spop", "invasive-detail-100000.spop"]
+NUM_OF_TRIALS = 5
 
 
 # move the population files
@@ -58,15 +59,15 @@ try:
 
     os.rename(EVN,CUSTOM_EVNS[0])
     os.rename(CUSTOM_EVNS[1], EVN)
-    run_avida()
+    for i in range(NUM_OF_TRIALS):
+        run_avida()
+        save_data_path = path.join(os.pardir, "saved_data", username, "experimental_data"+"_"+str(i))
+        data_files = []
+        for f in os.listdir("data"):
+            if f not in ['README', '.DS_store']:
+                data_files.append(path.join("data",f))
+        move_files(save_data_path, *data_files)
     os.rename(EVN, CUSTOM_EVNS[1])
-
-    save_data_path = path.join(os.pardir, "saved_data", username, "experimental_data")
-    data_files = []
-    for f in os.listdir("data"):
-        if fi not in ['README', '.DS_store']:
-            data_files.append(path.join("data",f))
-    move_files(save_data_path, *data_files)
 
 finally:
     if path.exists(EVENTS):
