@@ -5,9 +5,10 @@
 import os, shutil
 from os import path
 
-# Verify the location of the avida directory, the avida executable, and the
-# required files for this script.
 def verify_file_locs(required_files, avida_dir):
+    '''Verify the location of the avida directory, the avida executable, and any
+    files required for this script.'''
+
     if not path.exists(avida_dir):
         print "Script has not been run in the right location. Please run this in a directory whose parent directory contains the directory 'avida'."
         exit()
@@ -23,10 +24,11 @@ def verify_file_locs(required_files, avida_dir):
         print "The folder is missing the following configuration files required for this script:", missing
         exit()
 
-# Move a file 'src' to directory 'dest_dir'. If directory does not exist,
-# create a directory. Add an underscore and an incrementing number if there is
-# a naming conflict at the destination.
 def move_files(dest_dir, *src_files):
+    '''Move a file 'src' to directory 'dest_dir'. If directory does not exist,
+    create a directory. Add an underscore and an incrementing number if there is
+    a naming conflict at the destination.'''
+
     files_moved = []
     for src in src_files:
         if not path.exists(src):
@@ -49,9 +51,10 @@ def move_files(dest_dir, *src_files):
         files_moved.append(dest)
     return files_moved
 
-# Output a message. If the OS is Mac OS X and has growlnotify installed, print
-# the message using growlnotify (which is more noticeable than the terminal)
 def display_msg(msg):
+    '''Output a message. If the OS is Mac OS X and has growlnotify installed, print
+    the message using growlnotify (which is more noticeable than the terminal)'''
+
     if os.name == 'posix' and path.exists('/usr/local/bin/growlnotify'): # 
         os.system("growlnotify -m '"+msg+"' -s") # -s makes it sticky (doesn't go away until clicked)
     else:
