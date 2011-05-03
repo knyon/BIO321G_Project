@@ -18,6 +18,7 @@ CUSTOM_EVNS = ["invasive_environment.cfg", "native_environment.cfg"]  # Required
 CUSTOM_ANALYZE = ["invasive_analyze.cfg"]
 POPULATION_FILES = ["native-detail-100000.spop", "invasive-detail-100000.spop"]
 NUM_OF_TRIALS = 5
+NUM_OF_INVADERS = 5
 
 
 # move the population files
@@ -53,7 +54,7 @@ try:
         fo = open("events.cfg", "w")
         for line in fp:
             if detail_line.match(line):
-                line = detail_line.sub(r'\1'+dom_genotype+'\n',line)
+                line = detail_line.sub(r'\1'+dom_genotype+" 0 " +str(NUM_OF_INVADERS)+"\n",line)
             fo.write(line)
         fo.close()
 
@@ -61,7 +62,7 @@ try:
     os.rename(CUSTOM_EVNS[1], EVN)
     for i in range(NUM_OF_TRIALS):
         run_avida()
-        save_data_path = path.join(os.pardir, "saved_data", username, "experimental_data"+"_"+str(i))
+        save_data_path = path.join(os.pardir, "saved_data", username, "experimental_data"+"_"+str(i+1))
         data_files = []
         for f in os.listdir("data"):
             if f not in ['README', '.DS_store']:
