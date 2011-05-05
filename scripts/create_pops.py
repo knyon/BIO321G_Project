@@ -31,7 +31,7 @@ try:
         run_avida(seed)
         display_msg("Run "+str(run) +" of avida completed.")
         run += 1
-        os.rename(EVM, cfg)
+        os.rename(ENV, cfg)
 
         data_src = path.join('data','detail-100000.spop')
         data_dest = path.join(os.pardir, 'saved_data', username)
