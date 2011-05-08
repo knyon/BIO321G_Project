@@ -37,7 +37,7 @@ run from any other directory.
     Run the run\_experiment.py script using any Python interpreter. Enter your
     name when prompted, or the name of the directory containing invasive and
     native populations in the *saved_data/their_name* directory (e.g., _nedu_,
-    _sarah_, or _lane). The script looks for population files in the
+    _sarah_, or _lane_). The script looks for population files in the
     *saved_directory/yourname* directory. The script will perform several trials
     and will save the data from each trial in the *saved_data/yourname* directory,
     with the data from each trial in it's own directory titled
