@@ -25,24 +25,24 @@ this repository using the associated URL, also at the top of the page.
 Change your working directory to the _scripts_ directory. The scripts will not
 run from any other directory.
 
-1. Create native and invasive populations 
-    Run the create_pops.py script using any Python interpreter.
+1. **Create native and invasive populations.**
+    Run the create\_pops.py script using any Python interpreter.
     Enter your name when prompted and the digits of your UTEID (or any other
-    digits). Your data will be saved in the directory _saved_data/yourname_ and
+    digits). Your data will be saved in the directory *saved_data/yourname* and
     the digits are the random seed used for avida. It will output the two 
     populations to this directory.
     
-2. Run the experiment. 
+2. **Run the experiment.**
     Run the run_experiment.py script using any Python interpreter. Enter your
     name when prompted. The script looks for population files in the
-    _saved_directory/yourname_ directory. The script will perform several trials
-    and will save the data from each trial in the _saved_data/yourname_
+    *saved_directory/yourname* directory. The script will perform several trials
+    and will save the data from each trial in the *saved_data/yourname*
     directory, with the data from each trial in it's own directory titled 
-    _experimental_data_[0-9]+_.
+    *experimental_data_[0-9]+*.
 
 ##License
 
 We claim no warranty on anything in this repository. Use at your own risk. Feel 
 free to use and modify the scripts at will. The avida software has it's own 
-license, which is available 
-[here][https://github.com/devosoft/avida-core/blob/master/COPYING]
+license, which is available at
+https://github.com/devosoft/avida-core/blob/master/COPYING.
