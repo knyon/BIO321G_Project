@@ -60,11 +60,11 @@ def display_msg(msg):
     else:
         print msg
 
-# Run the avida command, either in normal mode or analyze mode. If 1 parameter
-# is passed or seed = 0, run analyze mode. If not, use the seed given to run an
-# instance of avida. Function also renames a given environment file to
-# 'environment.cfg', and reverts it back to it's original name
 def run_avida(seed=0):
+    '''Run the avida command, either in normal mode or analyze mode. If 1 parameter
+    is passed or seed = 0, run analyze mode. If not, use the seed given to run an
+    instance of avida. Function also renames a given environment file to
+    'environment.cfg', and reverts it back to it's original name'''
     if seed > 0:
         if os.name == "nt":  # if the OS is Windows based
             command = "avida.exe -s "
