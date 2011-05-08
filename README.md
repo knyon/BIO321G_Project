@@ -41,7 +41,7 @@ run from any other directory.
     *saved_directory/yourname* directory. The script will perform several trials
     and will save the data from each trial in the *saved_data/yourname* directory,
     with the data from each trial in it's own directory titled
-    *experimental_data_[0-9]+*.
+    *experimental\_data\_[0-9]+*.
 
 ##License
 
