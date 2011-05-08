@@ -2,16 +2,17 @@
 
 ##About
 
-All data, scripts, and executables in this repository are for the Spring 2011 
-BIO 321G Final Project. This repository is self contained. No other files are
-necessary to download, including the avida executables.  
+All data, scripts, and executables in this repository are for the Spring 2011
+BIO 321G Final Project. Various output data was also added to this repository
+to distribute amoung group members. This repository is self contained. No other
+files are necessary to download, including the avida executables. 
 
 ##Requirements
 
 While several attempts were made at making this project cross-platform,
 unfortunately, the Windows API for avida makes this impossible at this time.
 This should work on all POSIX and \*nix systems, though it has only been tested
-on Mac OS X. Python 2.6 or later is required. This scripts will not work on
+on Mac OS X. Python 2.6 or later is required. This scripts will not work with
 Python 3. 
 
 ##Installation 
@@ -33,11 +34,13 @@ run from any other directory.
     populations to this directory.
     
 2. **Run the experiment.**
-    Run the run_experiment.py script using any Python interpreter. Enter your
-    name when prompted. The script looks for population files in the
+    Run the run\_experiment.py script using any Python interpreter. Enter your
+    name when prompted, or the name of the directory containing invasive and
+    native populations in the *saved_data/their_name* directory (e.g., _nedu_,
+    _sarah_, or _lane). The script looks for population files in the
     *saved_directory/yourname* directory. The script will perform several trials
-    and will save the data from each trial in the *saved_data/yourname*
-    directory, with the data from each trial in it's own directory titled 
+    and will save the data from each trial in the *saved_data/yourname* directory,
+    with the data from each trial in it's own directory titled
     *experimental_data_[0-9]+*.
 
 ##License
