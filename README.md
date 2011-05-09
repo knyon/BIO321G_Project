@@ -42,6 +42,21 @@ run from any other directory.
     and will save the data from each trial in the *saved_data/yourname* directory,
     with the data from each trial in it's own directory titled
     *experimental\_data\_[0-9]+*.
+3. **Analyze the data.** Most all of the analysis was done 'by hand', that is,
+    manually moving files around and executing _./avida -a_. This was done in
+    the interest of time. This can still be completed, however, with some minor
+    changes. In order to perform your own analysis of the dominant genotype, copy
+    the genotype from the file *dom\_genotype.dat* in the *experimental\_data\_1*
+    directory created after running the *run\_experiment.py* into one of the
+    *invasive\_analyze.cfg* configuration files. Then rename that file to
+    _analyze.cfg_ and run the command _./avida -a_ from inside the _avida_
+    directory. This will output a file called *invasive\_tasks.dat*, from which you
+    can determine whether the invasive genotype performs AND and EQUALS. To analyze
+    the lineage of the dominant population, rename *lineage\_analyze.cfg* to
+    _analyze.cfg_, move one of the *detail-10000.spop* population dumps from from a
+    *experimental\_data\_[0-9]+* directory to the _avida_ directory. Then run
+    _./avida -a_. The lineage file will be output to a file called
+    *experiment\_lineage.dat*.
 
 ##License
 
