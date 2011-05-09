@@ -32,6 +32,8 @@ run from any other directory.
     digits). Your data will be saved in the directory *saved_data/yourname* and
     the digits are the random seed used for avida. It will output the two 
     populations to this directory.
+
+        For reference, the seeds we used to create our pairs of populations were: 633 (Lane), 637 (Nedu), 4385 (Sarah)
     
 2. **Run the experiment.**
     Run the run\_experiment.py script using any Python interpreter. Enter your
@@ -42,6 +44,7 @@ run from any other directory.
     and will save the data from each trial in the *saved_data/yourname* directory,
     with the data from each trial in it's own directory titled
     *experimental\_data\_[0-9]+*.
+
 3. **Analyze the data.** Most all of the analysis was done 'by hand', that is,
     manually moving files around and executing _./avida -a_. This was done in
     the interest of time. This can still be completed, however, with some minor
